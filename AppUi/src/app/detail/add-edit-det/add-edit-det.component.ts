@@ -24,7 +24,8 @@ export class AddEditDetComponent implements OnInit {
   addDetail(){
     var result = {vendorCode:this.detail.vendorCode,
               name:this.detail.name,
-              count:this.detail.count};
+              count:this.detail.count,
+              employeeId:this.Employee.id};
     this.service.addDetail(result).subscribe(res=>{
       alert('Added successfully');
       }, 
@@ -46,7 +47,11 @@ export class AddEditDetComponent implements OnInit {
   loadEmployeeNamesList(){
     this.service.getEmployeeNamesList().subscribe(res=>{
       this.EmployeeList=res;             
-      this.Employee = this.EmployeeList.find(x => (x.id == this.detail.employee.id));     
-    })
+      if (this.detail.employee != undefined) 
+      {
+        this.Employee = this.EmployeeList.find(x => (x.id == this.detail.employee.id));
+      }           
+    }, 
+    error => console.log('Status code: '+error.status))
   }  
 }

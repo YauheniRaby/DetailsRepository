@@ -41,7 +41,7 @@ export class ShowDetComponent implements OnInit {
     if(confirm('Are you sure??')){
       this.service.deleteDetail(item.id).subscribe(()=>{        
         this.refreshDetailList();
-        alert('Status code: '+'Deleted successfully');
+        alert('Deleted successfully');
       },
       error => console.log(error.status))      
     }    
