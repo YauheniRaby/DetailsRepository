@@ -8,7 +8,7 @@ namespace AppServices.Services.Abstract
     {
         Task<bool> ExistsAsync(int id);
 
-        Task<List<FullEmployeeDTO>> GetEmployeeAsync();
+        Task<List<FullEmployeeDTO>> GetAsync();
 
         Task<List<EmployeeWithCountDetailsDTO>> GetEmployeeWithCountDetailsAsync();
 

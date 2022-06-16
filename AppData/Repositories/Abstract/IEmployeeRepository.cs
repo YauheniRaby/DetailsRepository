@@ -8,11 +8,11 @@ namespace AppData.Repositories.Abstract
     {
         Task<bool> ExistsAsync(int id);
 
-        Task<List<Employee>> GetEmployeesAsync();
+        Task<List<Employee>> GetAsync();
 
         Task<List<EmployeeWithCountDetails>> GetEmployeesWithCountDetailsAsync();
 
-        Task RemoveEmployeeByIdAsync(int id);
+        Task RemoveByIdAsync(int id);
 
         Task<int> GetCountDetailsByIdAsync(int id);
 

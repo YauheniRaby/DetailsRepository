@@ -6,14 +6,14 @@ namespace AppServices.Services.Abstract
 {
     public interface IDetailService
     {
-        Task<List<DetailDTO>> GetDetailsAsync();
+        Task<List<DetailDTO>> GetAsync();
 
-        Task DeleteDetailAsync(int id);
+        Task DeleteAsync(int id);
 
         Task<bool> ExistsAsync(int id);
 
-        Task AddDetailAsync(CreateDetailDTO createDetailDto);
+        Task AddAsync(CreateDetailDTO createDetailDto);
 
-        Task UpdateDetailAsync(UpdateDetailDTO updateDetailDto);
+        Task UpdateAsync(UpdateDetailDTO updateDetailDto);
     }
 }

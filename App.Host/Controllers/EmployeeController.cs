@@ -19,7 +19,7 @@ namespace App.Host.Controllers
         [HttpGet]
         public async Task<ActionResult<List<FullEmployeeDTO>>> GetAsync()
         {
-            return await _employeeService.GetEmployeeAsync();
+            return await _employeeService.GetAsync();
             
         }
 

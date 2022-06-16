@@ -20,21 +20,21 @@ namespace AppServices.Services
             _mapper = mapper;
         }
 
-        public async Task<List<DetailDTO>> GetDetailsAsync()
+        public async Task<List<DetailDTO>> GetAsync()
         {
-            var result = await _detailRepository.GetDetailsAsync();
+            var result = await _detailRepository.GetAsync();
             return _mapper.Map<List<DetailDTO>>(result);
         }
 
-        public Task AddDetailAsync(CreateDetailDTO createDetailDto) 
+        public Task AddAsync(CreateDetailDTO createDetailDto) 
         {
             var detail = _mapper.Map<Detail>( createDetailDto );
-            return _detailRepository.AddDetailAsync(detail);
+            return _detailRepository.AddAsync(detail);
         }
 
-        public Task DeleteDetailAsync(int id)
+        public Task DeleteAsync(int id)
         {
-            return _detailRepository.DeleteDetailAsync(id, DateTime.Now);
+            return _detailRepository.DeleteAsync(id, DateTime.Now);
         }
 
         public Task<bool> ExistsAsync(int id)
@@ -42,11 +42,11 @@ namespace AppServices.Services
             return _detailRepository.ExistsAsync(id);
         }
 
-        public async Task UpdateDetailAsync(UpdateDetailDTO updateDetailDto)
+        public async Task UpdateAsync(UpdateDetailDTO updateDetailDto)
         {
             var detail = _mapper.Map<Detail>(updateDetailDto);
             detail.CreatedDate = await _detailRepository.GetCreatedDateByIdAsync(updateDetailDto.Id);
-            await _detailRepository.UpdateDetailAsync(detail);
+            await _detailRepository.UpdateAsync(detail);
         }
     }
 }

@@ -21,18 +21,18 @@ namespace App.Host.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<DetailDTO>>> GetDetailsAsync()
+        public async Task<ActionResult<List<DetailDTO>>> GetAsync()
         {
-            var result = await _detailService.GetDetailsAsync();
+            var result = await _detailService.GetAsync();
             return result;
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteDetailAsync(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
             if(await _detailService.ExistsAsync(id))
             {
-                await _detailService.DeleteDetailAsync(id);
+                await _detailService.DeleteAsync(id);
                 return Ok();
             }
             
@@ -40,11 +40,11 @@ namespace App.Host.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddDetailAsync(CreateDetailDTO detail)
+        public async Task<ActionResult> AddAsync(CreateDetailDTO detail)
         {
             if(await _employeeService.ExistsAsync(detail.EmployeeId))
             {
-                await _detailService.AddDetailAsync(detail);
+                await _detailService.AddAsync(detail);
                 return Ok();
             }
 
@@ -57,7 +57,7 @@ namespace App.Host.Controllers
             if (await _detailService.ExistsAsync(detail.Id)
                 && await _employeeService.ExistsAsync(detail.EmployeeId))
             {
-                await _detailService.UpdateDetailAsync(detail);
+                await _detailService.UpdateAsync(detail);
                 return Ok();
             }
 

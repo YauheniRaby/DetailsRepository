@@ -22,7 +22,7 @@ namespace AppData.Repositories
             return _context.Employees.AnyAsync(x => x.Id == id && !x.IsRemove);
         }
 
-        public Task<List<Employee>> GetEmployeesAsync()
+        public Task<List<Employee>> GetAsync()
         {
             return _context.Employees.Where(x => !x.IsRemove).ToListAsync();
         }
@@ -33,12 +33,12 @@ namespace AppData.Repositories
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    CountDetails = x.Details.Count()
+                    CountDetails = x.Details.Where(d => d.RemoveDate == null).Count()
                 }) 
                 .ToListAsync();
         }
 
-        public Task RemoveEmployeeByIdAsync(int id)
+        public Task RemoveByIdAsync(int id)
         {
             var employee = _context.Employees.Find(id);
             employee.IsRemove = true;
@@ -62,6 +62,6 @@ namespace AppData.Repositories
             _context.Entry(currentEmployee).CurrentValues.SetValues(employee);
 
             return _context.SaveChangesAsync();
-        }
+        }        
     }
 }

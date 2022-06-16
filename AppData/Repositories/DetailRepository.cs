@@ -18,7 +18,7 @@ namespace AppData.Repositories
             _context = context;
         }
 
-        public Task<List<Detail>> GetDetailsAsync()
+        public Task<List<Detail>> GetAsync()
         {
             var result = _context.Details
                 .Where(x=>x.RemoveDate==null)
@@ -27,7 +27,7 @@ namespace AppData.Repositories
             return result;
         }
 
-        public Task DeleteDetailAsync(int id, DateTime removeDateTime)
+        public Task DeleteAsync(int id, DateTime removeDateTime)
         {
             var detail = _context.Details.SingleOrDefault(x => x.Id == id);
             detail.RemoveDate = removeDateTime;
@@ -39,13 +39,13 @@ namespace AppData.Repositories
             return _context.Details.AnyAsync(x => x.Id == id && x.RemoveDate == null);
         }
 
-        public Task AddDetailAsync(Detail detail)
+        public Task AddAsync(Detail detail)
         {
             _context.Details.Add(detail);
             return _context.SaveChangesAsync();
         }
 
-        public Task UpdateDetailAsync(Detail detail)
+        public Task UpdateAsync(Detail detail)
         {
             var currentDetail = _context.Details.Find(detail.Id);
             detail.CreatedDate = currentDetail.CreatedDate;

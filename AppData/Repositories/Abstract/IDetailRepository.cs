@@ -7,15 +7,15 @@ namespace AppData.Repositories.Abstract
 {
     public interface IDetailRepository
     {
-        Task<List<Detail>> GetDetailsAsync();
+        Task<List<Detail>> GetAsync();
 
-        Task DeleteDetailAsync(int id, DateTime removeDateTime);
+        Task DeleteAsync(int id, DateTime removeDateTime);
 
         Task<bool> ExistsAsync(int id);
 
-        Task AddDetailAsync(Detail detail);
+        Task AddAsync(Detail detail);
 
-        Task UpdateDetailAsync(Detail detail);
+        Task UpdateAsync(Detail detail);
 
         Task<DateTime> GetCreatedDateByIdAsync(int id);
     }

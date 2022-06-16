@@ -24,9 +24,9 @@ namespace AppServices.Services
             return _employeeRepository.ExistsAsync(id);
         }
 
-        public async Task<List<FullEmployeeDTO>> GetEmployeeAsync()
+        public async Task<List<FullEmployeeDTO>> GetAsync()
         {
-            var employee = await _employeeRepository.GetEmployeesAsync();
+            var employee = await _employeeRepository.GetAsync();
             return _mapper.Map<List<FullEmployeeDTO>>(employee);
         }
 
@@ -41,7 +41,7 @@ namespace AppServices.Services
             var countDetails = await _employeeRepository.GetCountDetailsByIdAsync(id);
             if(countDetails == 0)
             {
-                await _employeeRepository.RemoveEmployeeByIdAsync(id);
+                await _employeeRepository.RemoveByIdAsync(id);
                 return true;
             }
             return false;            
