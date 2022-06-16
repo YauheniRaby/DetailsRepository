@@ -18,16 +18,18 @@ export class AddEditEmpComponent implements OnInit {
   addEmployee(){
     var result = {name:this.Employee.name};
     this.service.addEmployee(result).subscribe(res=>{
-      alert('Added');
-      });
+      alert('Added successfully');
+      }, 
+      error => console.log('Status code: '+error.status));
   }
 
   updateEmployee(){
     var result = {id:this.Employee.id,
                 name:this.Employee.name};
     this.service.updateEmployee(result).subscribe(res=>{
-      alert('Updated'); 
-    });
+      alert('Updated successfully'); 
+    }, 
+    error => console.log('Status code: '+error.status));
   }
 
 }

@@ -24,7 +24,8 @@ export class ShowDetComponent implements OnInit {
   refreshDetailList(){
     this.service.getDetailsList().subscribe(data=>{
       this.DetailsList=data;
-    })
+    },
+    error => console.log(error.status))
   }
 
   addClick(){
@@ -40,7 +41,9 @@ export class ShowDetComponent implements OnInit {
     if(confirm('Are you sure??')){
       this.service.deleteDetail(item.id).subscribe(()=>{        
         this.refreshDetailList();
-      })      
+        alert('Status code: '+'Deleted successfully');
+      },
+      error => console.log(error.status))      
     }    
   }
 

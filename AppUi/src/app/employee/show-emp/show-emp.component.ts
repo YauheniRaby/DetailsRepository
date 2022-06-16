@@ -23,14 +23,17 @@ export class ShowEmpComponent implements OnInit {
   refreshEmployeeList(){
     this.service.getEmployeesList().subscribe(data=>{
       this.EmployeesList=data;
-    })
+    }, 
+    error => console.log('Status code: '+error.status) )
   }
 
   deleteClick(item:any){
     if(confirm('Are you sure??')){
       this.service.deleteEmployee(item.id).subscribe(()=>{        
         this.refreshEmployeeList();
-      })      
+        alert('Deleted successfully');
+      },
+      error => console.log('Status code: '+error.status))      
     }
   }
 

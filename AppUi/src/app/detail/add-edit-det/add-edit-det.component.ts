@@ -26,8 +26,9 @@ export class AddEditDetComponent implements OnInit {
               name:this.detail.name,
               count:this.detail.count};
     this.service.addDetail(result).subscribe(res=>{
-      alert('Added');
-      });
+      alert('Added successfully');
+      }, 
+      error => console.log('Status code: '+error.status));
   }
 
   updateDetail(){
@@ -37,8 +38,9 @@ export class AddEditDetComponent implements OnInit {
       count:this.detail.count,
       employeeId:this.Employee.id};
     this.service.updateDetail(result).subscribe(res=>{
-      alert('Updated'); 
-    });
+      alert('Updated successfully'); 
+    }, 
+    error => console.log('Status code: '+error.status));
   }
 
   loadEmployeeNamesList(){

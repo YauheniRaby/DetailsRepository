@@ -36,7 +36,7 @@ namespace App.Host.Controllers
                 return Ok();
             }
             
-            return BadRequest();
+            return NotFound();
         }
 
         [HttpPost]
@@ -61,7 +61,7 @@ namespace App.Host.Controllers
                 return Ok();
             }
 
-            return BadRequest();
+            return NotFound();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace App.Host.Controllers
         public async Task<ActionResult<List<FullEmployeeDTO>>> GetAsync()
         {
             return await _employeeService.GetEmployeeAsync();
+            
         }
 
         [HttpGet("details")]
@@ -37,7 +38,7 @@ namespace App.Host.Controllers
                 return Ok();
             }
 
-            return BadRequest();
+            return NotFound();
         }
 
         [HttpPost]
@@ -55,7 +56,7 @@ namespace App.Host.Controllers
                 await _employeeService.UpdateAsync(employee);
                 return Ok();
             }
-            return BadRequest();
+            return NotFound();
         }
     }
 }
