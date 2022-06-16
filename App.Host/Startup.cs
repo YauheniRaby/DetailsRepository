@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using AppHost.Extensions;
+using FluentValidation.AspNetCore;
 
 namespace AppHost
 {
@@ -25,20 +26,11 @@ namespace AppHost
             var connectionString = Configuration["ConnectionStrings:DefaultConnection"];
             services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Singleton);
             
-            //services.AddCors(c =>
-            //{
-            //    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            //});
-
-            //services.AddControllersWithViews()
-            //    .AddNewtonsoftJson(options =>
-            //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft
-            //    .Json.ReferenceLoopHandling.Ignore)
-            //    .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-
             services.AddServices();
             services.AddRepositories();
-            services.AddControllers();
+            services.AddValidators();
+            services.AddControllers()
+                .AddFluentValidation(); ;
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Host", Version = "v1" });
@@ -65,12 +57,6 @@ namespace AppHost
             {
                 endpoints.MapControllers();
             });
-
-            //app.UseStaticFiles(new StaticFileOptions
-            //{
-            //    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Photos")),
-            //    RequestPath = "/Photos"
-            //}); ;
         }
     }
 }

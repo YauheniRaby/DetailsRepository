@@ -10,7 +10,6 @@ namespace AppHost.Extensions
     {
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddSingleton<IDepartmentService, DepartmentService>();
             services.AddSingleton<IDetailService, DetailService>();
             services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddSingleton<IMapper>(service => new Mapper(MapperConfig.GetConfiguration()));
